@@ -21,7 +21,7 @@
 #import "FBRequest.h"
 #import "FBError.h"
 #import "FBSessionManualTokenCachingStrategy.h"
-#import "FBSBJSON.h"
+//#import "FBSBJSON.h"
 #import "FBSession+Internal.h"
 #import "FBUtility.h"
 

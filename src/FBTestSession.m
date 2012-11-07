@@ -23,7 +23,7 @@
 #import "FBSession+Internal.h"
 #import "FBRequest.h"
 #import <pthread.h>
-#import "FBSBJSON.h"
+//#import "FBSBJSON.h"
 #import "FBGraphUser.h"
 
 /* 
