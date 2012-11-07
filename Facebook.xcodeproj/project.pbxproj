@@ -197,6 +197,7 @@
 		00C389E9164B0F51002C4F6E /* FBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBViewController.h; sourceTree = "<group>"; };
 		00C389EA164B0F51002C4F6E /* FBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBViewController.m; sourceTree = "<group>"; };
 		00C389EB164B0F51002C4F6E /* FBViewController+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBViewController+Internal.h"; sourceTree = "<group>"; };
+		00C38A3F164B1009002C4F6E /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = src/FBUserSettingsViewResources.bundle; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,6 +298,7 @@
 				00C389E9164B0F51002C4F6E /* FBViewController.h */,
 				00C389EA164B0F51002C4F6E /* FBViewController.m */,
 				00C389EB164B0F51002C4F6E /* FBViewController+Internal.h */,
+				00C38A3F164B1009002C4F6E /* FBUserSettingsViewResources.bundle */,
 				00C38998164B0F06002C4F6E /* FacebookSDKResources.bundle */,
 			);
 			path = src;
@@ -482,7 +484,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "xcodebuild -target Facebook -sdk iphoneos -configuration ${CONFIGURATION} BUILD_DIR=${BUILD_DIR}\nxcodebuild -target Facebook -sdk iphonesimulator -configuration ${CONFIGURATION} BUILD_DIR=${BUILD_DIR}\n\nrm -rf ${BUILD_DIR}/Universal\nmkdir ${BUILD_DIR}/Universal\ncp -R ${BUILD_DIR}/${CONFIGURATION}-iphoneos/Facebook/ ${BUILD_DIR}/Universal/Facebook/\nlipo -create ${BUILD_DIR}/${CONFIGURATION}-iphoneos/libFacebook.a ${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/libFacebook.a -output ${BUILD_DIR}/Universal/libFacebook.a\n\ncp -R ${SOURCE_ROOT}/src/FBDialog.bundle ${BUILD_DIR}/Universal";
+			shellScript = "xcodebuild -target Facebook -sdk iphoneos -configuration ${CONFIGURATION} BUILD_DIR=${BUILD_DIR}\nxcodebuild -target Facebook -sdk iphonesimulator -configuration ${CONFIGURATION} BUILD_DIR=${BUILD_DIR}\n\nrm -rf ${BUILD_DIR}/Universal\nmkdir ${BUILD_DIR}/Universal\ncp -R ${BUILD_DIR}/${CONFIGURATION}-iphoneos/Facebook/ ${BUILD_DIR}/Universal/Facebook/\nlipo -create ${BUILD_DIR}/${CONFIGURATION}-iphoneos/libFacebook.a ${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/libFacebook.a -output ${BUILD_DIR}/Universal/libFacebook.a\n\ncp -R ${SOURCE_ROOT}/src/FacebookSDKResources.bundle ${BUILD_DIR}/Universal\ncp -R ${SOURCE_ROOT}/src/FBUserSettingsViewResources.bundle ${BUILD_DIR}/Universal";
 		};
 /* End PBXShellScriptBuildPhase section */
 
