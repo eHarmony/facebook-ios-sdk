@@ -1,6 +1,5 @@
 /*
  * Copyright 2010 Facebook
- * Copyright 2012 Lolay, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +16,6 @@
 
 
 #import "FBDialog.h"
-//#import "FBSBJSON.h"
 #import "Facebook.h"
 #import "FBFrictionlessRequestSettings.h"
 #import "FBUtility.h"
@@ -298,13 +296,11 @@ params   = _params;
                                               needle:@"frictionless_recipients="];
     if (recipientJson) {
         // if value parses as an array, treat as set of fbids
-        FBSBJsonParser *parser = [[[FBSBJsonParser alloc]
-                                   init]
-                                  autorelease];
-        id recipients = [parser objectWithString:recipientJson];
+        NSError *jsonError = nil;
+        id recipients = [NSJSONSerialization JSONObjectWithData:[recipientJson dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&jsonError];
         
         // if we got something usable, copy the ids out and update the cache
-        if ([recipients isKindOfClass:[NSArray class]]) {
+        if (!jsonError && [recipients isKindOfClass:[NSArray class]]) {
             NSMutableArray *ids = [[[NSMutableArray alloc]
                                     initWithCapacity:[recipients count]]
                                    autorelease];
@@ -509,7 +505,6 @@ params   = _params;
 // UIDeviceOrientationDidChangeNotification
 
 - (void)deviceOrientationDidChange:(void*)object {
-    
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
     if (!_showingKeyboard && [self shouldRotateToOrientation:orientation]) {
         [self updateWebOrientation];

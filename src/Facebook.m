@@ -1,6 +1,5 @@
 /*
  * Copyright 2010 Facebook
- * Copyright 2012 Lolay, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +20,6 @@
 #import "FBRequest.h"
 #import "FBError.h"
 #import "FBSessionManualTokenCachingStrategy.h"
-//#import "FBSBJSON.h"
 #import "FBSession+Internal.h"
 #import "FBUtility.h"
 
@@ -67,11 +65,11 @@ static NSString *const FBexpirationDatePropertyName = @"expirationDate";
 @implementation Facebook
 
 @synthesize sessionDelegate = _sessionDelegate,
-            urlSchemeSuffix = _urlSchemeSuffix,
-            appId = _appId,
-            session = _session,
-            hasUpdatedAccessToken = _hasUpdatedAccessToken,
-            tokenCaching = _tokenCaching;
+urlSchemeSuffix = _urlSchemeSuffix,
+appId = _appId,
+session = _session,
+hasUpdatedAccessToken = _hasUpdatedAccessToken,
+tokenCaching = _tokenCaching;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
@@ -117,15 +115,15 @@ static NSString *const FBexpirationDatePropertyName = @"expirationDate";
         _requests = [[NSMutableSet alloc] init];
         _lastAccessTokenUpdate = [[NSDate distantPast] retain];
         _frictionlessRequestSettings = [[FBFrictionlessRequestSettings alloc] init];
-        _tokenCaching = [[FBSessionManualTokenCachingStrategy alloc] init];        
+        _tokenCaching = [[FBSessionManualTokenCachingStrategy alloc] init];
         self.appId = appId;
         self.sessionDelegate = delegate;
         self.urlSchemeSuffix = urlSchemeSuffix;
         
         // observe tokenCaching properties so we can forward KVO
-        [self.tokenCaching addObserver:self 
+        [self.tokenCaching addObserver:self
                             forKeyPath:FBaccessTokenPropertyName
-                               options:NSKeyValueObservingOptionPrior 
+                               options:NSKeyValueObservingOptionPrior
                                context:tokenContext];
         [self.tokenCaching addObserver:self
                             forKeyPath:FBexpirationDatePropertyName
@@ -139,13 +137,13 @@ static NSString *const FBexpirationDatePropertyName = @"expirationDate";
  * Override NSObject : free the space
  */
 - (void)dealloc {
-
+    
     // this is the one case where the delegate is this object
     _requestExtendingAccessToken.delegate = nil;
-
+    
     [_session release];
     [_tokenCaching release];
-
+    
     for (FBRequest* _request in _requests) {
         [_request removeObserver:self forKeyPath:requestFinishedKeyPath];
     }
@@ -167,7 +165,7 @@ static NSString *const FBexpirationDatePropertyName = @"expirationDate";
     [FBSession deleteFacebookCookies];
     
     // setting to nil also terminates any active request for whitelist
-    [_frictionlessRequestSettings updateRecipientCacheWithRecipients:nil]; 
+    [_frictionlessRequestSettings updateRecipientCacheWithRecipients:nil];
 }
 
 #pragma GCC diagnostic push
@@ -195,9 +193,9 @@ static NSString *const FBexpirationDatePropertyName = @"expirationDate";
                                     change:(NSDictionary *)change {
     // here we are forwarding KVO notifications from an inner object
     if ([change objectForKey:NSKeyValueChangeNotificationIsPriorKey]) {
-        [self willChangeValueForKey:keyPath];        
-    } else {        
-        [self didChangeValueForKey:keyPath];        
+        [self willChangeValueForKey:keyPath];
+    } else {
+        [self didChangeValueForKey:keyPath];
     }
 }
 
@@ -209,7 +207,7 @@ static NSString *const FBexpirationDatePropertyName = @"expirationDate";
                                              change:change];
     } else if (context == tokenContext) {
         [self observeTokenContextValueForKeyPath:keyPath
-                                             change:change];
+                                          change:change];
     } else {
         [super observeValueForKeyPath:keyPath
                              ofObject:object
@@ -232,7 +230,7 @@ static NSString *const FBexpirationDatePropertyName = @"expirationDate";
  */
 - (NSDictionary*)parseURLParams:(NSString *)query {
 	NSArray *pairs = [query componentsSeparatedByString:@"&"];
-	NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+	NSMutableDictionary *params = [[[NSMutableDictionary alloc] init] autorelease];
 	for (NSString *pair in pairs) {
 		NSArray *kv = [pair componentsSeparatedByString:@"="];
 		NSString *val =
@@ -247,16 +245,16 @@ static NSString *const FBexpirationDatePropertyName = @"expirationDate";
 - (void)updateSessionIfTokenUpdated {
     if (self.hasUpdatedAccessToken) {
         self.hasUpdatedAccessToken = NO;
-
+        
         // invalidate current session and create a new one with the same permissions
         NSArray *permissions = self.session.permissions;
-        [self.session close];    
+        [self.session close];
         self.session = [[[FBSession alloc] initWithAppID:_appId
                                              permissions:permissions
                                          urlSchemeSuffix:_urlSchemeSuffix
                                       tokenCacheStrategy:self.tokenCaching]
-                           autorelease];
-    
+                        autorelease];
+        
         // get the session into a valid state
         [self.session openWithCompletionHandler:nil];
     }
@@ -314,27 +312,27 @@ static NSString *const FBexpirationDatePropertyName = @"expirationDate";
                 [self fbDialogLogin:session.accessToken expirationDate:session.expirationDate];
                 break;
             case FBSessionStateClosedLoginFailed:
-                { // prefer to keep decls near to their use
-                    
-                    // unpack the error code and reason in order to compute cancel bool
-                    NSString *errorCode = [[error userInfo] objectForKey:FBErrorLoginFailedOriginalErrorCode];
-                    NSString *errorReason = [[error userInfo] objectForKey:FBErrorLoginFailedReason];
-                    BOOL userDidCancel = !errorCode && (!errorReason ||
-                                                        [errorReason isEqualToString:FBErrorLoginFailedReasonInlineCancelledValue]);
-                    
-                    // call the legacy session delegate
-                    [self fbDialogNotLogin:userDidCancel];
-                }
+            { // prefer to keep decls near to their use
+                
+                // unpack the error code and reason in order to compute cancel bool
+                NSString *errorCode = [[error userInfo] objectForKey:FBErrorLoginFailedOriginalErrorCode];
+                NSString *errorReason = [[error userInfo] objectForKey:FBErrorLoginFailedReason];
+                BOOL userDidCancel = !errorCode && (!errorReason ||
+                                                    [errorReason isEqualToString:FBErrorLoginFailedReasonInlineCancelledValue]);
+                
+                // call the legacy session delegate
+                [self fbDialogNotLogin:userDidCancel];
+            }
                 break;
-            // presently extension, log-out and invalidation are being implemented in the Facebook class 
+                // presently extension, log-out and invalidation are being implemented in the Facebook class
             default:
                 break; // so we do nothing in response to those state transitions
         }
     }];
- }
+}
 
 -(NSString*)accessToken {
-    return self.tokenCaching.accessToken;  
+    return self.tokenCaching.accessToken;
 }
 
 -(void)setAccessToken:(NSString *)accessToken {
@@ -515,14 +513,14 @@ static NSString *const FBexpirationDatePropertyName = @"expirationDate";
                         andDelegate:(id <FBRequestDelegate>)delegate {
     [self updateSessionIfTokenUpdated];
     [self extendAccessTokenIfNeeded];
-
+    
     FBRequest *request = [[FBRequest alloc] initWithSession:self.session
                                                  restMethod:methodName
                                                  parameters:params
                                                  HTTPMethod:httpMethod];
     [request setDelegate:delegate];
     [request startWithCompletionHandler:nil];
-
+    
     return request;
 }
 
@@ -617,14 +615,14 @@ static NSString *const FBexpirationDatePropertyName = @"expirationDate";
                        andDelegate:(id <FBRequestDelegate>)delegate {
     [self updateSessionIfTokenUpdated];
     [self extendAccessTokenIfNeeded];
-
+    
     FBRequest *request = [[FBRequest alloc] initWithSession:self.session
                                                   graphPath:graphPath
                                                  parameters:params
                                                  HTTPMethod:httpMethod];
     [request setDelegate:delegate];
     [request startWithCompletionHandler:nil];
-
+    
     return request;
 }
 
@@ -682,12 +680,12 @@ static NSString *const FBexpirationDatePropertyName = @"expirationDate";
         BOOL invisible = NO;
         
         // frictionless handling for application requests
-        if ([action isEqualToString:kApprequests]) {        
+        if ([action isEqualToString:kApprequests]) {
             // if frictionless requests are enabled
             if (self.isFrictionlessRequestsEnabled) {
                 //  1. show the "Don't show this again for these friends" checkbox
                 //  2. if the developer is sending a targeted request, then skip the loading screen
-                [params setValue:@"1" forKey:@"frictionless"];	
+                [params setValue:@"1" forKey:@"frictionless"];
                 //  3. request the frictionless recipient list encoded in the success url
                 [params setValue:@"1" forKey:@"get_frictionless_recipients"];
             }
@@ -696,20 +694,20 @@ static NSString *const FBexpirationDatePropertyName = @"expirationDate";
             id fbid = [params objectForKey:@"to"];
             if (fbid != nil) {
                 // if value parses as a json array expression get the list that way
-                FBSBJsonParser *parser = [[[FBSBJsonParser alloc] init] autorelease];
-                id fbids = [parser objectWithString:fbid];
-                if (![fbids isKindOfClass:[NSArray class]]) {
+                NSError *jsonError = nil;
+                id fbids = [NSJSONSerialization JSONObjectWithData:[fbid dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&jsonError];
+                if (!jsonError && ![fbids isKindOfClass:[NSArray class]]) {
                     // otherwise seperate by commas (handles the singleton case too)
                     fbids = [fbid componentsSeparatedByString:@","];
-                }                
-                invisible = [self isFrictionlessEnabledForRecipients:fbids];             
+                }
+                invisible = [self isFrictionlessEnabledForRecipients:fbids];
             }
         }
         
         _fbDialog = [[FBDialog alloc] initWithURL:dialogURL
                                            params:params
                                   isViewInvisible:invisible
-                             frictionlessSettings:_frictionlessRequestSettings 
+                             frictionlessSettings:_frictionlessRequestSettings
                                          delegate:delegate];
     }
     
@@ -757,7 +755,7 @@ static NSString *const FBexpirationDatePropertyName = @"expirationDate";
     [self reloadFrictionlessRecipientCache];
     if ([self.sessionDelegate respondsToSelector:@selector(fbDidLogin)]) {
         [self.sessionDelegate fbDidLogin];
-    }    
+    }
 }
 
 /**
@@ -815,7 +813,7 @@ static NSString *const FBexpirationDatePropertyName = @"expirationDate";
 }
 
 + (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key {
-    // these properties must manually notify for KVO    
+    // these properties must manually notify for KVO
     if ([key isEqualToString:FBaccessTokenPropertyName] ||
         [key isEqualToString:FBexpirationDatePropertyName]) {
         return NO;
