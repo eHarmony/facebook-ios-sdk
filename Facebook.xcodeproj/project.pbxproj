@@ -34,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0044F48F164E12DB00D84CBC /* Facebook.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Facebook.podspec; sourceTree = "<group>"; };
 		004AFBAA15448A2100FE0E17 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
 		004AFBAB15448A2100FE0E17 /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Facebook.m; sourceTree = "<group>"; };
 		004AFBAD15448A2100FE0E17 /* FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBConnect.h; sourceTree = "<group>"; };
@@ -88,6 +89,7 @@
 				0086C9EC15434635006B5B39 /* Products */,
 				004AFBC915448AAB00FE0E17 /* Rakefile */,
 				004AFBCA15448AAB00FE0E17 /* rpom.xml */,
+				0044F48F164E12DB00D84CBC /* Facebook.podspec */,
 			);
 			sourceTree = "<group>";
 		};
