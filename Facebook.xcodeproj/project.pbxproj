@@ -108,6 +108,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0044F48F164E12DB00D84CBC /* Facebook.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Facebook.podspec; sourceTree = "<group>"; };
+		004AFBAA15448A2100FE0E17 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
+		004AFBAB15448A2100FE0E17 /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Facebook.m; sourceTree = "<group>"; };
+		004AFBAD15448A2100FE0E17 /* FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBConnect.h; sourceTree = "<group>"; };
+		004AFBAE15448A2100FE0E17 /* FBDialog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBDialog.bundle; sourceTree = "<group>"; };
+		004AFBAF15448A2100FE0E17 /* FBDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBDialog.h; sourceTree = "<group>"; };
+		004AFBB015448A2100FE0E17 /* FBDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBDialog.m; sourceTree = "<group>"; };
+		004AFBB115448A2100FE0E17 /* FBLoginDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginDialog.h; sourceTree = "<group>"; };
+		004AFBB215448A2100FE0E17 /* FBLoginDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginDialog.m; sourceTree = "<group>"; };
+		004AFBB315448A2100FE0E17 /* FBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBRequest.h; sourceTree = "<group>"; };
+		004AFBB415448A2100FE0E17 /* FBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBRequest.m; sourceTree = "<group>"; };
 		004AFBC915448AAB00FE0E17 /* Rakefile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Rakefile; sourceTree = "<group>"; };
 		004AFBCA15448AAB00FE0E17 /* rpom.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = rpom.xml; sourceTree = "<group>"; };
 		0086C9EB15434635006B5B39 /* libFacebook.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFacebook.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -312,6 +323,7 @@
 				0086C9EC15434635006B5B39 /* Products */,
 				004AFBC915448AAB00FE0E17 /* Rakefile */,
 				004AFBCA15448AAB00FE0E17 /* rpom.xml */,
+				0044F48F164E12DB00D84CBC /* Facebook.podspec */,
 			);
 			sourceTree = "<group>";
 		};
