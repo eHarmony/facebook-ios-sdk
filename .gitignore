@@ -17,3 +17,4 @@ test/UnitTest/build/
 project.xcworkspace
 xcuserdata
 .arc
+target/*
