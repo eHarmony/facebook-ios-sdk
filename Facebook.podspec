@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Facebook"
-  s.version      = "1.0.4"
+  s.version      = "3.1.101"
   s.summary      = "Facebook integration for iOS apps."
   s.homepage     = "https://github.com/eHarmony/facebook-ios-sdk"
   s.license      = {
@@ -10,9 +10,9 @@ Pod::Spec.new do |s|
 
         LICENSE
     }
-  s.author       = { "Olivier Larivain" => "olarivain@eharmony.com" }
+  s.author       = { "Ryan Holmes" => "rholmes@eharmony.com" }
   s.source       = { :git => "https://github.com/eHarmony/facebook-ios-sdk.git", :tag => "v#{s.version}" }
-  s.platform     = :ios, '4.2'
+  s.platform     = :ios, '5.0'
   s.source_files = 'src'
   s.resource = 'src/FBDialog.bundle'
   s.frameworks = 'Foundation'
