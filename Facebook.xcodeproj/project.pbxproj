@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		00EDCF3D167179C700388D1F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00EDCF3C167179C700388D1F /* Foundation.framework */; };
-		00EDCF42167179C700388D1F /* Facebook.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 00EDCF41167179C700388D1F /* Facebook.h */; };
-		00EDCF44167179C700388D1F /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EDCF43167179C700388D1F /* Facebook.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -19,7 +17,6 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
-				00EDCF42167179C700388D1F /* Facebook.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -29,8 +26,6 @@
 		00EDCF39167179C700388D1F /* libFacebook.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFacebook.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		00EDCF3C167179C700388D1F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		00EDCF40167179C700388D1F /* Facebook-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Facebook-Prefix.pch"; sourceTree = "<group>"; };
-		00EDCF41167179C700388D1F /* Facebook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
-		00EDCF43167179C700388D1F /* Facebook.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Facebook.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,8 +68,6 @@
 		00EDCF3E167179C700388D1F /* Facebook */ = {
 			isa = PBXGroup;
 			children = (
-				00EDCF41167179C700388D1F /* Facebook.h */,
-				00EDCF43167179C700388D1F /* Facebook.m */,
 				00EDCF3F167179C700388D1F /* Supporting Files */,
 			);
 			path = Facebook;
@@ -139,7 +132,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00EDCF44167179C700388D1F /* Facebook.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
