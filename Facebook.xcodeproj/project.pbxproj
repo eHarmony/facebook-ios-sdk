@@ -208,6 +208,9 @@
 		00EDCFAC16717D6600388D1F /* FBViewController+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FBViewController+Internal.h"; path = "src/FBViewController+Internal.h"; sourceTree = SOURCE_ROOT; };
 		00EDCFCF16717DAC00388D1F /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = src/FacebookSDKResources.bundle; sourceTree = SOURCE_ROOT; };
 		00EDCFD016717DB800388D1F /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = src/FBUserSettingsViewResources.bundle; sourceTree = SOURCE_ROOT; };
+		00EDD014167182F300388D1F /* Facebook.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Facebook.podspec; sourceTree = "<group>"; };
+		00EDD015167182F300388D1F /* Rakefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Rakefile; sourceTree = "<group>"; };
+		00EDD016167182F300388D1F /* rpom.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = rpom.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +228,9 @@
 		00EDCF2E167179C700388D1F = {
 			isa = PBXGroup;
 			children = (
+				00EDD014167182F300388D1F /* Facebook.podspec */,
+				00EDD015167182F300388D1F /* Rakefile */,
+				00EDD016167182F300388D1F /* rpom.xml */,
 				00EDCF3E167179C700388D1F /* Facebook */,
 				00EDCF3B167179C700388D1F /* Frameworks */,
 				00EDCF3A167179C700388D1F /* Products */,
