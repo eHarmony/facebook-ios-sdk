@@ -1,7 +1,7 @@
 <project>
 	<name>Facebook iOS library</name>
 	<groupId>com.eharmony.mobile.external</groupId>
-	<version>3.1.120</version>
+	<version>3.1.121</version>
 	<scm>git</scm>
 	
 	<artifacts>
